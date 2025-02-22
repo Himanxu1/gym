@@ -1,16 +1,14 @@
-import * as logger from "winston";
+import winston from "winston";
 
-const format = logger.format.combine(
-  logger.format.colorize({ all: false }),
-  logger.format.timestamp(),
-  logger.format.printf((info) => {
-    return `[${info.timestamp}] ${info.level}: ${info.message}`;
-  }),
+const format = winston.format.combine(
+  winston.format.colorize({ all: false }),
+  winston.format.timestamp(),
+  winston.format.printf(({ timestamp, level, message }) => {
+    return `[${timestamp}] ${level}: ${message}`;
+  })
 );
 
-logger.remove(logger.transports.Console);
-
-logger.addColors({
+winston.addColors({
   debug: "green",
   info: "cyan",
   silly: "magenta",
@@ -18,10 +16,10 @@ logger.addColors({
   error: "red",
 });
 
-logger.configure({
+const logger = winston.createLogger({
   level: "info",
   format,
-  transports: [new logger.transports.Console()],
+  transports: [new winston.transports.Console()],
 });
 
 export { logger };

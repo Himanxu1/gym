@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "main": "./dist/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ",
+    "start": "nodemon ./dist/app.js",
+    "compile": "npm run tsc",
+    "build": "npm run compile",
     "format:check": "prettier --check .",
     "lint": "eslint . --ext .ts",
     "format:write": "prettier --write ."
