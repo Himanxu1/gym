@@ -5,7 +5,7 @@ const format = logger.format.combine(
   logger.format.timestamp(),
   logger.format.printf((info) => {
     return `[${info.timestamp}] ${info.level}: ${info.message}`;
-  })
+  }),
 );
 
 logger.remove(logger.transports.Console);
